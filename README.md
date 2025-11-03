@@ -23,14 +23,21 @@ This AI tutor is built on a few core principles:
 
 ## Getting Started
 
-To use this AI tutor in a new project, clone this repository into your project's directory:
+To use this AI tutor in a new project, it's recommended to clone this repository into your project's directory. This allows you to get updates to the tutor over time.
 
 ```bash
-git clone /home/alexei/dev-academy/alexei-ai-tutor
-echo 'alexei-ai-tutor' >> .gitignore
+git clone <URL to your tutor repository>
 ```
 
-Then, run the `setup` workflow to personalize the tutor for your new project.
+After cloning, add `alexei-ai-tutor/` to your project's `.gitignore` file to avoid committing the tutor's files to your project's repository. You can do this manually or by running the following command in your project's root directory:
+
+```bash
+echo "alexei-ai-tutor/" >> .gitignore
+```
+
+For detailed instructions on how to manage updates and customize the tutor for your project, please refer to the [updating guide](./guides/updating-tutor.md).
+
+Once cloned, run the `setup` workflow to personalize the tutor for your new project.
 
 ## How to Use
 
