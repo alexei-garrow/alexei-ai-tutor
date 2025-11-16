@@ -32,3 +32,17 @@ Pair programming can be a highly effective way to write better code and share kn
 -   **Driver/Navigator:** One person (the driver) writes the code, while the other (the navigator) reviews, strategizes, and looks for potential issues.
 -   **Switch roles frequently:** This ensures both partners are engaged and learning.
 -   **Communicate constantly:** Talk through your thoughts and decisions.
+
+## Version Control
+
+Clear and consistent version control practices are essential for collaboration.
+
+### Commit Messages
+
+Well-crafted commit messages are a form of communication with your future self and your team.
+
+-   **Use a Convention:** Adopt a convention like [Conventional Commits](https://www.conventionalcommits.org/). This adds a `type` to your message (e.g., `feat:`, `fix:`, `docs:`, `style:`) for clarity.
+-   **Write in the Imperative Mood:** Write subject lines as if giving a command (e.g., "Add feature" not "Added feature"). This reflects that the commit is a set of instructions to change the codebase.
+-   **Keep Subjects Short:** Aim for a subject line of 50 characters or less.
+-   **Use the Body for Explanation:** For more complex changes, move the "why" and "how" into the commit body, leaving the subject line as a concise summary.
+-   **Commit Logical Units:** A single commit should represent a single, complete logical change. Avoid committing unrelated changes together, or splitting a single logical change into many tiny commits.
