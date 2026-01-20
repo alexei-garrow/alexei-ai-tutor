@@ -383,9 +383,9 @@ console.log(rules);
 
 *   **Best Practices for Chains:**
     *   **Modularity:** Keep components separate (data model, LLM config, prompt definition). This improves clarity, reusability, and makes debugging easier.
-    *   **Readability:** The pipe syntax visually represents the data flow, making complex workflows easy to understand.
-    *   **Flexibility:** Easily swap components (e.g., change LLM, modify prompt) without affecting the entire structure.
-    *   **Clear Input/Output:** The `.invoke({"text": text})` method clearly defines inputs, and outputs are predictably typed (like a `JobPosting` object).
+    - **Readability:** The pipe syntax visually represents the data flow, making complex workflows easy to understand.
+    - **Flexibility:** Easily swap components (e.g., change LLM, modify prompt) without affecting the entire structure.
+    - **Clear Input/Output:** The `.invoke({"text": text})` method clearly defines inputs, and outputs are predictably typed (like a `JobPosting` object).
 
 ### 4. Debugging Prompt Issues: The `salary_range` Example
 
@@ -398,10 +398,10 @@ console.log(rules);
 *   **Core Insight: Focus on the Prompt:** Assuming the data is present and the Pydantic model is correct, the most effective place to fix extraction issues is by **improving the prompt itself**. The prompt is the direct instruction set for the LLM.
 
 *   **Prompt Refinement Strategy:**
-    *   **Be More Explicit:** Guide the LLM with clearer instructions on what to look for and how to format it.
-    *   **Example Prompt Improvement:**
-        *   *Original prompt instruction:* `- Salary range if mentioned`
-        *   *Improved prompt instruction:* `- Salary range (e.g., "$80,000 - $100,000" or "£45k-£55k"). Look for keywords like 'salary', 'compensation', 'pay', or symbols like '$', '£', '€'.`
+    - **Be More Explicit:** Guide the LLM with clearer instructions on what to look for and how to format it.
+    - **Example Prompt Improvement:**
+        - *Original prompt instruction:* `- Salary range if mentioned`
+        - *Improved prompt instruction:* `- Salary range (e.g., "$80,000 - $100,000" or "£45k-£55k"). Look for keywords like 'salary', 'compensation', 'pay', or symbols like '$', '£', '€'.`
 *   **Key Principle:** Prompt engineering is an iterative process. You constantly test, identify extraction failures, and refine your instructions to the LLM to achieve better results.
 
 ## Session 7: Debugging ModuleNotFoundError with `uv run`
@@ -473,3 +473,28 @@ Visual Studio Code provides several powerful ways to work with the Python interp
     -   Yes, you can always use the interactive interpreter to test individual functions or code snippets. It's a great way to experiment and debug in isolation.
     -   **Correct Command:** To enter the REPL for this project, you must use `uv run python`.
     -   **Reasoning:** This command ensures that you are using the Python interpreter from the project's virtual environment (`.venv`), which has access to all the installed dependencies (like `langchain`, `pydantic`, etc.). Simply typing `python` would likely start the global system Python, which would result in a `ModuleNotFoundError`.
+
+## Session 10: Analysis of Phase 3 and Planning for Phase 4
+
+**Date:** 2026-01-20
+
+### 1. Analysis of Initial Extraction Results
+
+-   **Action:** Reviewed the output of the `main.py` script from Phase 3.
+-   **Observations:** The user made several excellent observations about the limitations of the current extractor:
+    1.  **Location Nuance:** The model extracted the location ("Austin, Texas") but missed the important nuance that the job was remote-friendly with an option to go into the office.
+    2.  **Requirement Tiers:** The model incorrectly classified a "bonus" requirement ("Bonus points if you've worked at a startup before") as a `must_have_requirement`.
+    3.  **Missing Contact Info:** Valuable contact details from the job posting (name, title, email) were not being extracted.
+    4.  **Missing Benefits:** Important benefits mentioned in the text (e.g., "flexible PTO policy," "reimburse you for relevant courses or certifications") were also not being captured.
+-   **Conclusion:** The initial extractor works well for the basic fields, but it lacks the sophistication to capture these richer, more nuanced details.
+
+### 2. Planning for Phase 4: "Experiment and Improve"
+
+-   **Goal:** Enhance the extractor to capture the details identified above.
+-   **Two-Part Plan:**
+    1.  **Extend the Data Model:** We will update the `JobPosting` Pydantic model in `job_models.py` to create "containers" for the new information. This includes adding fields for:
+        -   `remote_friendly: bool`
+        -   `nice_to_have_requirements: List[str]`
+        -   `contact: Optional[str]`
+        -   `benefits: List[str]`
+    2.  **Improve the Prompt:** We will then enhance the prompt in `job_extractor.py`. A more detailed prompt will instruct the AI to specifically look for and categorize this new information, such as distinguishing between must-have and nice-to-have requirements and identifying benefits.
