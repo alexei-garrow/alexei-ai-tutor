@@ -6,7 +6,12 @@ Help the user learn about a new topic, incorporating active recall and interleav
 
 ## Workflow Steps
 
-1.  **Identify the topic:** Ask the user what they want to learn about.
+1.  **Check for Interactive Mode Preference:**
+    *   Ask the user: "Would you like to activate interactive mode for this tutoring session? (Yes/No)"
+    *   If "Yes", proceed with interactive guidance for each step.
+    *   If "No", proceed with standard, sequential guidance.
+
+2.  **Identify the topic:** Ask the user what they want to learn about.
 2.  **Integrate Project Context (Optional):**
     *   If applicable, ask the user if they have any related code snippets or files in their current project they'd like to use as a concrete example for this topic.
     *   If so, ask for the relevant file paths or code excerpts. The tutor will then reference this as a concrete example during explanation.
