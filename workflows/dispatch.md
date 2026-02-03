@@ -6,7 +6,21 @@ To help the user choose the most appropriate workflow for their current situatio
 
 ## Workflow Steps
 
-1.  **Morning Review:**
+1.  **Check for First-Time Setup & Initialize Session:**
+    *   **Action:** Read `config.json` to check the `experience_level`.
+    *   **If `experience_level` is `null` (first-time run):**
+        *   **AI Message:** "Welcome! It looks like this is your first time using the AI Tutor in this project. I'm going to start the `setup` workflow to help you get configured."
+        *   **Action:** Automatically trigger the `setup` workflow. The `dispatch` workflow should then terminate.
+    *   **If `experience_level` is not `null` (returning user):**
+        *   **AI Message:** "Welcome back! As a reminder, here are your core workflows:"
+            *   `tutor` (Learn a new topic)
+            *   `problem-solving` (Break down a problem)
+            *   `unblock` (Get a hint when you're stuck)
+            *   `review` (Practice concepts with Spaced Repetition)
+            *   `reflect` (Consolidate learning and set goals)
+        *   **Action:** Proceed to the Morning Review.
+
+2.  **Morning Review:**
     *   Check the `knowledge-journal.md` for topics that were learned on the previous day.
     *   If any are found, ask the user if they would like to do a quick review/test on those topics before starting their new session.
     *   If the user agrees, trigger the `review` workflow for those topics.
