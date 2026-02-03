@@ -25,6 +25,7 @@ This workflow is optional and can be initiated by the user when they need to:
 ### 2. Create New Task:
 *   **Task Title:** Ask for a concise title for the task.
 *   **Description:** Ask for a detailed description of what needs to be done.
+*   **Link to Learning Goal (Optional):** Ask if the task relates to a goal in `learning-plan.md`. This helps connect daily work to long-term objectives.
 *   **Assignee (Optional):** Ask who is responsible (e.g., "Me", "AI").
 *   **Priority (Optional):** Ask for the task's priority (e.g., "High", "Medium", "Low").
 *   **Status:** Default to "Open" or "To Do".
@@ -43,6 +44,20 @@ This workflow is optional and can be initiated by the user when they need to:
 
 ### 5. Task Storage Recommendation:
 *   Recommend a dedicated `tasks.md` file in the project root for storing task information, possibly using a markdown table for structured data. This file would be separate from the tutor's core journals to keep project-specific tasks distinct.
+
+#### Example `tasks.md`
+A markdown table is a great way to structure this file. Here’s an example showing how the optional "Related Learning Goal" can be included.
+
+```markdown
+# Project Tasks
+
+| ID  | Task Title                      | Status      | Due Date   | Related Learning Goal                               |
+|:----|:--------------------------------|:------------|:-----------|:----------------------------------------------------|
+| 1   | Refactor the user login module  | To Do       | 2026-02-10 | "Practice writing recursive functions"              |
+| 2   | Set up initial CI/CD pipeline   | Done        | 2026-02-05 | "Understand build and deployment processes"         |
+| 3   | Write unit tests for API        | In Progress | 2026-02-15 | "Learn Test-Driven Development (TDD)"               |
+
+```
 
 ## Considerations for Implementation:
 *   For persistent storage and easy parsing, a structured markdown format (like tables or YAML front matter) within `tasks.md` would be beneficial.
